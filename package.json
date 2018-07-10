@@ -1,0 +1,31 @@
+{
+  "name": "zacharyschaffter.com",
+  "version": "1.0.0",
+  "description": "A simple portfolio site for yours truly.",
+  "main": "zacharyschaffter.com",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babelify": "^8.0.0",
+    "browser-sync": "^2.18.13",
+    "browserify": "^16.2.2",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-imagemin": "^4.1.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.6.1",
+    "gulp-uglify": "^3.0.0",
+    "request": "^2.87.0",
+    "vinyl-source-stream": "^2.0.0",
+    "vueify": "^9.4.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Zachary Schaffter",
+  "license": "ISC"
+}

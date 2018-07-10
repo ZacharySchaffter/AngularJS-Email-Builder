@@ -1,0 +1,38 @@
+/*Banner styles*/
+  .banner {
+    background: #003f87; 
+    display: table;
+    width: 100%;
+    color: #fff;
+
+    .banner-edit-left {
+        display:table-cell;
+        width:83%;
+        vertical-align:middle;
+        padding-left:2%;
+
+        input[type="text"]{
+            width:100%;
+            color:white;
+            background:none;
+            border:none;
+            outline:none;
+            border-bottom:1px dashed #FFF;
+            letter-spacing:1px;
+            font-size:28px;
+        }
+    }
+
+    .banner-edit-right {
+        text-align:center;
+        display:table-cell;
+        width:12%;
+    }
+
+    &.preview-banner {
+        font-size:16px;
+        margin-bottom:0px;
+        border-radius:0px;
+        padding:5px 25px;
+    }
+}

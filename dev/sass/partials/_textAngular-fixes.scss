@@ -1,0 +1,6 @@
+/*TextAngular's textarea inherits css from parent elements (padding/margin), so this is to fix tabs, ul's, etc.*/ 
+.ta-editor * {outline:none;}
+.form-control {height:auto!important;}
+.story ul, .story ol {padding-left:25px;}
+.story blockquote {font-size:1em;}
+.ta-hidden-input {display:none}

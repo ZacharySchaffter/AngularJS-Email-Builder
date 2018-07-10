@@ -1,0 +1,1 @@
+{"sections":[{"type":"banner","title":""},{"type":"story","title":"","date":"","image":".\/images\/default\/default.png","color":"#E5D9C4","text":"Type your text here!"}],"week":"The week of July 9"}

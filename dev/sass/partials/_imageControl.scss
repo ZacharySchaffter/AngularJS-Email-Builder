@@ -1,0 +1,158 @@
+
+  #newImageButton {
+    cursor:pointer;
+    padding:.5em;
+    background:#30CC30;
+    border-radius:4px; 
+    border:1px solid #589A58;
+    color:#FFF;
+    text-shadow:1px 1px 0px rgba(0,0,0,0.3);
+    box-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+    opacity:.7;
+    transition:all .3s;
+  }
+  
+  #newImageButton:hover {
+    opacity:1;
+  }
+  
+  #imageGallery {
+    background:#CDCDCD; 
+  }
+  
+  #imageEditor {
+    display:none;
+    background:#CCC; 
+    border: 1px solid #003F87; 
+    border-radius:5px; 
+    box-shadow:rgba(0,0,0,.3); 
+    width:600px; 
+    margin:0 auto; 
+    height:500px;
+    position:relative;
+  }
+  
+  
+  .gallery-section:first-child {margin-top:0px;}
+  
+  .gallery-section {
+    margin:1em 0;
+    padding:1em;
+    border-bottom:1px solid #333; 
+  }
+  
+  
+  .gallery-section-image {
+    position:relative;
+    margin:.5em;
+    padding:.5em;
+    box-shadow:1px 1px 2px rgba(0,0,0,0.3);
+    float:left;
+    background:#555;
+    
+  }
+  
+  .gallery-section-image img {
+    display:block;
+    margin:0 auto;
+  }
+  
+  
+/*Image-Select*/
+
+.image-wrap {
+  position:fixed;
+  left:0;
+  top:0;
+  padding:2em 5em;
+  height:100%;
+  width:100%;
+  z-index:10000;
+
+  .image-inner-wrap {
+    width:100%; 
+    position:relative;
+  }
+
+  .image-select,
+  .image-add {
+      width:100%;
+    position:relative;
+    z-index:7500;
+  }
+
+  h4 {
+    color: #fff;
+  }
+  
+}
+
+.image-select-section {
+  position:relative;
+  padding-bottom:1.5em;
+  margin-bottom:1.5em;
+  border-bottom:1px dashed #fff;
+
+  &>div {
+    position:relative;
+    display:inline-block; 
+    padding:2px;
+  }
+
+  img {
+    margin: 5px;
+    cursor:pointer;
+    border:2px solid transparent;
+
+    &:hover {
+      border:2px solid #fff;
+    }
+  }
+
+  &>div:hover .deleteButton {
+    opacity: 0.5;
+  }
+
+  .deleteButton {
+    font-size:16px;
+    display:block;
+    opacity:0;
+    position:absolute;
+    right:-.5em;
+    top:-.5em;
+    cursor:pointer;
+    transition: all .2s;
+
+    .fa-circle {
+      color: #f00;
+    }
+
+    .fa-times {
+      color: #fff;
+    }
+
+    &:hover {
+      opacity: 1!important;
+    }
+  }
+}
+
+.overlay {
+  position:fixed;
+  left:0;
+  top:0;
+  background:rgba(0, 0, 0, 0.7);
+  height:100%;
+  width:100%;
+  z-index:5000;
+}
+
+.button.add-new-image-button {
+  color: #fff;
+  border:1px solid #ccc;
+}
+
+
+
+
+

@@ -1,0 +1,15 @@
+
+<div class="story preview-story" ng-style="{'background':'#FFF' }">
+    <table cellpadding="0" cellspacing="0">
+    	<tr>
+            <td class="preview-image-cell"><img ng-src="{{section.image}}"></td>
+        	<td class="preview-content-cell">
+            	<div class="preview-title">{{section.title}}</div>
+                <div  class="preview-date" ng-if="section.date">{{section.date}}</div>
+                <div class="preview-text" ng-bind-html="section.text"></div>
+                <div ng-if="section.readmorebutton.active" class="preview-button" style="text-align:right;"><a ng-href="{{section.readmorebutton.link}}" target="_blank" style="cursor:pointer;display:inline-block; padding:5px 15px; background:#003f87; color:white;">{{section.readmorebutton.text}}</a></div>
+            </td>
+        </tr>
+    </table>
+</div>
+

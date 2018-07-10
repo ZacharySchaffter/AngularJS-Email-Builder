@@ -1,0 +1,21 @@
+ <div class="banner">
+    <div class="banner-edit-left">
+        <input id="{{'title-'+section.id}}" class="title" type="text" placeholder="Your title here" ng-model="section.title" ng-value="section.title" />
+    </div>
+    
+    <div class="banner-edit-right delete-btn" ng-click="remove($index)">
+        <span class="fa fa-trash-o"></span>
+    </div>
+</div>
+<div class="add-section-wrap">
+    <div class="plus-button">
+        <span class="fa fa-2x fa-arrow-left"></span>
+        &nbsp;
+        <span class="fa fa-2x fa-plus-square"></span>
+        &nbsp;
+        <span class="fa fa-2x fa-arrow-right"></span>
+    </div> 
+
+    <div class="add-section-button add-section-left" ng-click="addSection($index, 'banner')">Add Banner</div>
+    <div class="add-section-button add-section-right" ng-click="addSection($index, 'story')">Add Story</div>
+</div>

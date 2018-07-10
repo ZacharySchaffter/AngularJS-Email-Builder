@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en" ng-app="emailBuilderApp" ng-controller="emailBuildCtrl">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Internal E-mail Builder</title>
+    
+    <!--Main Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+
+    <!--Fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,300italic,700,700italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    
+    <!--jQuery-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    
+    <!--jQuery UI -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    
+    <!--jQuery Mousewheel-->
+	<script src="./js/jquery-mousewheel.js"></script>
+    
+	<!--DropZone-->
+	<script src="./js/dropzone.js"></script>
+	
+    <!--AngularJS-->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>
+
+    <!--Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    
+    <!--textAngular-->
+    <script src="./js/textAngular-rangy.min.js"></script>
+    <script src="./js/textAngular-sanitize.min.js"></script>
+    <script src="./js/textAngular.js"></script>
+    <script src="./js/textAngularSetup.js"></script>
+    
+    <!--Angular-UI components-->
+    <script src="./js/ui-sortable.min.js"></script>
+    
+	<!--App stuff-->
+	<script src="./js/app.js"></script>
+    <script src="./js/imageEditCtrl.js"></script>
+
+	
+</head>
+
+
+<body>
+	<div class="content-wrap">	
+    	<div class="menu">
+        	<div class="header">E-Mail Builder</div>
+        	<ul class="nav">
+        		<li class="nav-item" ng-click="createNew();"><span class="fa fa-plus fa-fw"></span>Create a new file</li>
+                <li class="nav-item" ng-if="status.mode!='blank'" ng-click="getFiles(); showFileSelect(); fileActionSwitch('save')" ng-class="{'disabled':status.mode=='blank'}"><span class="fa fa-floppy-o fa-fw"></span>Save File</li>
+        		<li class="nav-item" ng-click="getFiles(); showFileSelect(); fileActionSwitch('load')" ><span class="fa fa-file-text fa-fw"></span>Load File</li>
+        		<li class="nav-item" ng-if="status.mode!='blank'" ng-click="toggleEditingStatus();" ng-class="{'disabled':status.mode=='blank'}" ng-switch on="status.mode">
+                	<span ng-switch-when="working"><span class="fa fa-search fa-fw"></span>Preview</span>
+                	<span ng-switch-when="preview"><span class="fa fa-pencil fa-fw"></span>Edit</span>
+                </li>
+                	
+                
+        		<li class="nav-item" ng-if="status.mode!='blank'" ng-click="showSendDialog();"><span class="fa fa-envelope-o fa-fw" ng-class="{'disabled':status.mode=='blank'}"></span>Send E-mail</li>
+        	</ul>
+        
+        </div>
+        
+        <div class="workarea">
+        
+        <!--Begin content area-->
+        	<div class="default__content" ng-if="status.mode=='blank'">
+            	<span ng-click="createNew();">Create a new document</span>
+                <br>or<br>
+                <span ng-click="getFiles(); showFileSelect(); fileActionSwitch('load')">Load a file</span> to begin
+            </div>
+            
+            <div class="email-banner" ng-if="status.mode=='preview'">
+            	<img src="./graphics/news2u-banner.jpg" alt="News2U Banner">
+            </div>
+            <div class="email-date-bar" ng-if="status.mode=='preview'">
+            	<div>
+                	{{file.week}}
+                </div>
+            </div>
+           	
+            
+            <div class="email-date-bar-edit" ng-if="status.mode=='working'">
+            	<input ng-model="file.week" ng-value="file.week" type="text" style="width:100%">
+            </div>       
+        	
+            
+            <div id="sections-wrap" ui-sortable="sortableOptions" ng-model="file.sections" ng-class="{'preview' : status.mode=='preview'}">    
+                <div id="{{'section' + $index}}" class="section" ng-repeat="section in file.sections" ng-switch on="section.type">
+                    <div ng-switch-when="story" ng-switch on="status.mode">
+                   		<working-story ng-switch-when="working"></working-story>
+                        <preview-story ng-switch-when="preview"></preview-story>
+                    </div>
+                    
+                    <div ng-switch-when="banner" ng-switch on="status.mode">
+                    	<working-banner ng-switch-when="working"></working-banner>
+                        <preview-banner ng-switch-when="preview"></preview-banner>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!--Img Control-->
+    <div class="image-wrap animate-switch-container animate-show-fade" ng-show="imageDivVisible" ng-controller="imageCtrl" ng-switch on="imageWindow" ng-init="imageWindow = 'select'; loadImages();">
+    	<div class="image-inner-wrap">        
+            <div class="image-select animate-switch" ng-switch-when="select">
+                <div class="button add-new-image-button" ng-click="addNewImage()"><span class="fa fa-lg fa-plus"></span> Add new image</div>
+                
+                <div class="image-select-section" ng-repeat="folder in images">
+                    <h4>{{folder.year}}</h4>
+                    <div ng-repeat="image in folder.images">
+                        <img ng-src="{{'./images/'+folder.year+'/'+image}}"  ng-click="changeImage('./images/'+folder.year+'/'+image)" alt="{{image}}">
+                        <div class="fa-stack fa-lg deleteButton" ng-click="deleteImg([folder.year,image])">
+                            <span class="fa fa-circle fa-stack-2x"></span>
+                            <span class="fa fa-times fa-stack-1x"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            <div class="image-add animate-switch" ng-switch-when="add">
+                <h4>Add an image:</h4>
+                <div class="image-creator animate-switch-container" ng-switch on="imgCreation.status">
+                    
+                        <div ng-switch-when="uploading" class="upload-wrap group animate-switch" ng-class="{'advanced-upload' : isAdvancedUpload}" z-image-drop>
+                            <div><span class="fa fa-upload upload-icon"></span></div>
+                            <input id="imageSelect" type="file" onchange="angular.element(this).scope().fileNameChanged(this)">
+                            <label id="label-imageSelect" for="imageSelect" >Upload a file</label> <span class="upload-text">or drag an image here</span>
+                        </div>
+                    
+                    <!-- - - - - - - - - -->
+                    <div ng-switch-when="editing" class="edit-image-wrap animate-switch" ng-init="loadCanvas()">
+                        <div class="canvas-wrap group">
+                            <!--Main Canvas that shows overlay-->
+                            <div class="main-canvas">
+                                <canvas id="myCanvas" width="800" height="500" z-canvas-drag></canvas>
+                                <div class="zoom-wrap">
+                                    <input id="zoomSlider" type="range" min="1" max="200" step="0.5"
+                                        ng-model="imgCreation.zoom"
+                                        ng-value="imgCreation.zoom"> 
+                                    <output for="zoomSlider">{{imgCreation.zoom}}%</output>
+                                </div>
+                                    
+                            </div>
+                            
+                            <div class="preview-canvas-wrap">
+                                <div class="preview-canvas">
+                                    <div>Preview:</div>
+                                    <canvas id="previewCanvas" width="600" height="400"></canvas>
+                                </div>
+                            </div>
+                        </div><!--end canvas-wrap-->
+                         
+                            
+                        <div class="button-wrap">
+                            <div class="button" ng-click="changeStatus('uploading')">Back</div>
+                            <div class="button green" ng-click="changeStatus('saving')">Continue</div>
+                        </div>
+                    </div>
+                    <!-- - - - - - - - - -->
+                    <div ng-switch-when="saving" class="save-image-wrap animate-switch">
+                        
+                        <!--preview image-->
+                        <div id="preview-image">
+                            <img alt="preview" ng-src="{{imgCreation.imageToSave}}" title="{{imgCreation.img.title}}"/>
+                        </div>
+                        
+                        <!--Filename input -->
+                        <div class="input" style="width:400px; text-align:left; margin:.5em auto;">
+                            <label for="fileName">Type your filename:</label><br>
+                            <input ng-class="{error: imgCreation.error}" id="saveFileName" type="text" ng-model="imgCreation.img.title">
+                        </div>
+                        
+                        <!--errors-->
+                        <div class="error-messages" ng-show="imgCreation.error">
+                            {{imgCreation.errorMessage}}
+                        </div>
+                        
+                        <!--buttons-->
+                        <div class="button-wrap">
+                            <div class="button" ng-click="changeStatus('editing')">Back</div>
+                            <div class="button green" ng-click="saveImage()">Save</div>
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+            
+            <!--Click on overlay to hide image select and reset to selection-->
+            <div class="overlay image-overlay" ng-click="hideImageSelect(); imageWindow = 'select'"></div>
+    	</div>
+    </div>
+    
+    <div class="file-select-wrap animate-show-fade" ng-show="fileSelectShow" ng-switch on="fileAction">
+    	<div class="file-select-box">
+        	<div class="clearfix">
+                <div class="file-select-title" style="display:inline-block;">{{fileAction}} file:</div>
+                <div class="search" style="display:inline-block;">
+                    <label>Search: <input type="text" ng-model="searchText"></label>
+                </div>
+            </div>
+            
+            <div class="file-select-items" ng-switch-when="load">
+                <div ng-repeat="folder in saveFiles">
+                    <span>{{folder.year}}</span>
+                    <div ng-repeat="file in folder.files | filter:searchText" ng-click="loadFile(); setFilename(file)">{{file}}</div>
+                </div>
+            </div>
+            
+            <div class="file-select-items" ng-switch-when="save">
+                <div class="file-select-year" ng-repeat="folder in saveFiles ">
+                    <span>{{folder.year}}</span>
+                    <div ng-repeat="file in folder.files | filter: searchText" ng-click="setFilename(file)">{{file}}</div>
+                </div>
+                
+            </div>
+                        
+            <div ng-switch-when="save" class="filename-input">
+            	<input type="text" ng-model="filename" ng-value="filename"> <button ng-click="saveFile(filename, false)">Save</button>
+                
+                <div ng-show="confirmOverwrite">
+                    <span>Filename already exists, do you wish to overwrite? <button ng-click="saveFile(filename, true)">Yes</button> <button ng-click="confirmOverwrite = !confirmOverwrite">No</button></span>
+                </div>
+            </div>
+            
+            
+        </div>
+    	<div class="overlay file-select-overlay" ng-click="fileSelectShow = !fileSelectShow"></div>
+    </div>
+    
+    <div class="send-dialog-wrap animate-show-fade" ng-show="sendDialog">
+    	<div class="send-dialog">
+        	<div class="title">Send E-Mail:</div>
+        	<label for="emailAddr">To:</label> <input id="emailAddr" type="text" ng-model="file.recipient" ng-value="file.recipient"><br>
+        	<label for="subjectLine">Subject:</label> <input id="subjectLine" type="text" ng-model="file.subjectline" ng-value="file.subjectline">
+            <button ng-click="sendEmail();">Send E-Mail</button>
+            
+            <div class="error" ng-if="sendEmailError">{{sendEmailError}}</div>
+    	</div>
+        <div class="overlay file-select-overlay" ng-click="sendDialog = !sendDialog"></div>
+    </div>
+
+</body>
+</html>

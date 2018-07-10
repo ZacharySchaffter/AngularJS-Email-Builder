@@ -1,0 +1,23 @@
+.default__content {
+  font-size:2em; 
+  text-align:center; 
+  color:#003F87;
+  color:rgba(0,63,135,0.3);
+  -webkit-transform: translateY(-50%);
+  -ms-transform:translateY(-50%);
+  transform: translateY(-50%);
+  position:relative;
+  top:50%;
+
+  span {
+    cursor:pointer; 
+    font-size:1.5em; 
+    font-weight:bold; 
+    transition:all 300ms;
+
+    &:hover {
+      color:#639ADA;
+    }
+  }
+}
+

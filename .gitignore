@@ -1,0 +1,9 @@
+.DS_Store
+.babelrc
+mockups/
+*.sublime*
+thumbs.db
+*.log
+node_modules/
+dist/images/*
+dev/images/*

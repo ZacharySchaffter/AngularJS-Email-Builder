@@ -1,0 +1,522 @@
+@import 'reset';
+@import './libraries/textAngular';
+
+//Variables
+@import './variables/colors';
+
+//partials
+@import './partials/default-screen';
+@import './partials/email-section';
+@import './partials/email-banner';
+@import './partials/textAngular-fixes';
+@import './partials/imageControl';
+@import './partials/imageUpload';
+@import './partials/addSection';
+
+html {
+	height:100%;
+}
+
+body {
+	position:relative;
+	padding-left:200px; 
+	padding-right:25px;
+	height:100%;
+	background-color:#fff;
+}
+
+  
+  /*clearfix*/
+  .group:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+.content-wrap {
+	min-width:800px; 
+	height:100%;
+}	
+
+.workarea {
+	display:block;
+	position:relative;
+	box-sizing:border-box;
+	height:100%;
+}
+	
+
+
+
+.email-banner {text-align:center; background:#003f87}
+.email-date-bar {background:#ddcca5; border-bottom:1px solid #003f87; width:100%;}
+.email-date-bar div{text-align:right; color:#003f87; font-weight:bold;font-style:italic; width:590px; padding:3px 5px; margin:0 auto;}
+
+.email-date-bar-edit {width:100%;border-radius:5px; padding:2px 5px;margin:.5em;}
+
+.email-footer {background:#003F87; color:#FFF; width:100%;}
+.email-footer>div {background:#003F87; color:#FFF; width:100%; max-width:580px; padding:10px 10px 25px; margin:0 auto;}
+.email-footer a{color:#FFF; text-decoration:underline;}
+.email-footer a:hover {color:#FFF;}
+
+
+
+	
+		
+	  
+  
+
+		
+	
+	
+	/*placeholder for sorting*/
+	.sectionPlaceHolder {
+		border: 2px solid transparent;
+		display: hidden;
+	}
+	
+	
+/*Navigation*/	
+.menu {
+	position:fixed;
+	left:0;
+	top:0;
+	width:175px;
+	height:100%;
+	box-sizing:border-box;
+	border-right:1px solid #222;
+	color:#FFF;
+	box-shadow:1px 1px 2px rgba(0,0,0,0.3);
+	
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#62616d+0,383c49+100 */
+background: #62616d; /* Old browsers */
+background: -moz-linear-gradient(-45deg,  #62616d 0%, #383c49 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(-45deg,  #62616d 0%,#383c49 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(135deg,  #62616d 0%,#383c49 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#62616d', endColorstr='#383c49',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+
+
+	
+	}
+	
+.menu .header {
+	text-align:center;
+	text-shadow:1px 1px 0px rgba(0,0,0,0.3);
+	font-size:1.5em;
+	padding:.75em .25em;
+	
+	}
+	
+	
+ul.nav li {
+	border-bottom:1px solid #333;
+	cursor:pointer;
+	padding-right:5px;
+	transition:100ms all;
+	}
+	
+ul.nav li span.fa {
+	display:inline-block;
+	padding:.5em; 
+	font-size:1.25em;
+	width:2em;
+	margin-right:.5em; 
+	border-right:1px solid rgba(0,0,0,.3);
+	}
+	
+ul.nav li:first-child {
+	border-top:1px solid #333;
+	}
+
+ul.nav li:hover {
+	/*background:#808084;*/
+	background:#38383E;
+	color:white;	
+	padding-right:0px;
+	border-right:5px solid #ccc;
+	
+	}
+
+
+
+.delete-btn {
+	vertical-align:middle;
+	font-size:4em;
+	color:#000;
+	opacity:.2;
+	transition:all .3s;
+	cursor:pointer;
+	}
+.delete-btn:hover {
+	opacity:.7;
+	color:#AD1212;
+	}
+
+
+
+
+
+
+
+
+
+	
+/*****************************************************
+
+				 Image Gallery CSS
+
+*****************************************************/
+
+	input:focus,
+	label:focus,
+	select:focus,
+	textarea:focus,
+	button:focus {
+		outline: none;
+	}
+	
+	body {
+		font-family:'Open Sans', Arial, Helvetica, sans-serif;
+		font-size:10px;
+		
+	}
+	
+	h1 {margin:.25em 0 1em;}
+	
+	#imageGalleryWrap {
+		background:#cdcdcd;
+		width:90%; 
+		margin:0 auto;
+		border:1px solid #CCC;
+		padding: 1em 2em;
+		font-size:1.6em;
+	}
+		
+	.title-banner div.title-text {float:left; font-size:2em;}
+	
+	.title-banner div {float:right;}
+	
+
+	/*clearfix*/
+	.group:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+	
+	
+	
+	.loading{
+		margin:0 auto;
+		font-size:3em;
+	}
+	
+/*****************************************************
+
+				    Popup CSS
+
+*****************************************************/
+	
+	#overlay {
+		top:0;
+		left:0;
+		position:fixed;
+		z-index:500;
+		width:100%; 
+		height:100%; 
+		background:#000; 
+		opacity:.5;
+		display:none;
+	}
+	
+	.popup {
+		display:none;
+		position:fixed;
+		top:0px;
+		left:0px;
+		right:0px;
+		z-index:1000;
+		text-align:center;
+		width:40%;
+		margin:1em auto;
+		font-size:1.6em;
+		border-radius:5px; 
+		border:1px solid #333;
+		box-shadow:0px 2px 3px rgba(0,0,0,0.3);
+		background:#FFF;
+		padding:.5em 1em;
+		animation:popupExpand .5s ease;
+		-webkit-animation:popupExpand .5s ease;
+	}
+
+
+	.popup *{
+		animation:popupContentAppear .65s ease;
+		-webkit-animation:popupContentAppear  .65s ease;
+	}
+	
+	.button-wrap {
+		display:block;	
+		text-align:center;
+		
+	}
+	
+	
+
+/**** BUTTONS ****/
+
+	.button{
+		display:inline-block;
+		padding:.5em 1em;
+		border-radius:5px;
+		box-shadow:1px 1px 2px rgba(0,0,0,.3);
+		cursor:pointer;
+		margin:.5em;
+		border:1px solid #888;
+		background:rgba(255,255,255,.2);
+		color:#FFF;
+		transition: all .5s;
+	}
+	
+	.button:hover{
+		border:1px solid #888;
+	}
+	
+	
+/*Red button*/
+	.button.red {
+		color:#FFF;
+		background:#bb1c1c;
+		border:1px solid #8b1d1d;	
+	}
+	
+	.button.red:hover{
+		background:#d63535;
+		border:1px solid #8b1d1d;	
+	}
+	
+	
+/*Green button*/
+	.button.green {
+		color:#FFF;
+	 	background:#30CC30;
+		border:1px solid #589A58
+	}
+	
+	.button.green:hover {
+		background:#5BDE5B;
+		border:1px solid #589A58
+	}
+	
+/*Entrance Animation*/
+	@keyframes popupExpand {
+    	0% {
+			
+			-ms-transform:scale(.7,.7);
+			-webkit-transform:scale(.7,.7);
+			transform:scale(.7,.7);
+			opacity:0; 
+			
+		}
+    	50% {
+			-ms-transform:scale(1.2,1.2);
+			-webkit-transform:scale(1.2,1.2);
+			transform:scale(1.2,1.2);
+		
+		}
+		100% { 
+			opacity:1;
+			-ms-transform:scale(1,1);
+			-webkit-transform:scale(1,1);
+			transform:scale(1,1);
+		}
+	}
+	
+	@keyframes popupContentAppear {
+		0% {opacity:0}
+		75% {opacity:0}
+		100% {opacity:1}
+	}
+	
+	
+
+/*****************************************************
+
+     			Confirm Delete CSS
+
+*****************************************************/
+
+.popup .imageDeleteThumbnail {margin:.5em 0; line-height:2em;}
+
+
+
+
+	
+	
+/*****************************************************
+
+				File Select CSS
+
+*****************************************************/
+
+.file-select-wrap {
+	position:fixed;
+	z-index:200;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	padding:1em 2em;
+	
+		
+}
+
+.file-select-box {
+	position:relative;
+	z-index: 10000;
+	box-shadow:1px 3px 30px rgba(0,0,0,0.7);
+	width:500px;
+	padding:1em;
+	margin:0 auto;
+	border:1px solid #999;
+	border-radius:5px;
+	background:rgba(255,255,255,.8);		
+}
+
+.file-select-box .search {
+	display:inline-block;
+	float:right;
+	}
+
+.file-select-items {
+	background:#FFF;
+	border:1px solid #888;	
+	padding:.5em 1em;
+	max-height:500px;
+	overflow:scroll;
+}
+
+.file-select-items span {
+	display:block;
+	background:#588AC3;
+	margin:1em 0em .5em;
+	padding:.25em;
+	color:#FFF;
+	font-style:italic;	
+}
+
+.file-select-items div div {
+	padding:.25em; 
+	margin-left:.25em;
+	border-bottom:1px dashed #ccc;
+	border-left:1px solid #ccc;
+	cursor:pointer;
+	transition:.3s all;
+}
+
+.file-select-items div div:hover {
+	background:#ccc;
+
+}
+
+.file-select-items .file-select-year div:last-child {border-bottom:0;}
+
+.file-select-title {
+	text-transform:uppercase;	
+}
+
+.filename-input {
+	width:100%; 
+	padding:.25em 0;
+
+	input {
+		width:90%; 
+		padding:0.25em;
+	}
+
+	button {
+		padding:0.25em;
+	}
+}
+
+
+
+/*****************************************************
+
+				Send Dialog CSS
+
+*****************************************************/
+.send-dialog-wrap {
+	position:fixed;
+	z-index:1000;
+	top:0;
+	left:0;
+	height:100%;
+	width:100%;
+	padding:1em 2em;
+	
+		
+}
+.send-dialog {
+	position:relative;
+	-webkit-transform:translateY(-50%);
+	transform:translateY(-50%);
+	top:35%;
+	z-index: 10000;
+	box-shadow:1px 3px 30px rgba(0,0,0,0.7);
+	width:300px;
+	padding:1em;
+	margin:0 auto;
+	border:1px solid #999;
+	border-radius:5px;
+	background:rgba(255,255,255,.8);		
+}
+
+.send-dialog label {width:60px; text-align:right;}
+.send-dialog input {width:205px;}
+.send-dialog .title {font-size:18px; font-weight:bold; text-align:center;}
+.send-dialog button {margin:5px 0; width:100%; text-align:center;}
+.send-dialog .error {font-style:italic; color:#FF0000;}
+
+
+/**********************************
+*********ng-animate stuff**********
+**********************************/
+/*switch animations*/
+.animate-switch.ng-animate {
+	-webkit-transition:all linear 0.5s;
+	transition:all linear 0.5s;
+	opacity:1;
+	position:absolute;
+	width:100%;
+}
+
+.animate-switch.ng-leave-stagger {
+	transition-delay: 0.1s;
+}
+
+.animate-switch.ng-leave.ng-leave-active,
+.animate-switch.ng-enter {
+	opacity:0;
+}
+.animate-switch.ng-leave,
+.animate-switch.ng-enter.ng-enter-active {
+  opacity:1;
+}
+
+
+/*ng-show fadein/out*/
+.animate-show-fade {
+	opacity:1;
+}
+
+.animate-show-fade.ng-hide {
+	opacity: 0;
+}
+
+
+.animate-show-fade.ng-hide-add,
+.animate-show-fade.ng-hide-remove {
+	transition: all linear .2s;
+}
+
