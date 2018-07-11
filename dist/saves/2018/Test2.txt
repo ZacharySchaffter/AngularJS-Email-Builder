@@ -1,1 +1,0 @@
-{"sections":[{"type":"story","title":"Title 2","date":"","image":".\/images\/default\/default.png","color":"#E5D9C4","text":"Type your text here!"},{"type":"story","title":"Title 1","date":"","image":".\/images\/default\/default.png","color":"#E5D9C4","text":"Type your text here!","readmorebutton":{"active":false}}]}

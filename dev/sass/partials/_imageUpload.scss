@@ -20,13 +20,11 @@
     width:700px;
 
     .main-canvas {
-      width:500px; 
-      height:300px;
       color:#FFF;
 
       canvas {
         width:800px; 
-        height:500px; 
+        height:400px; 
         cursor:grab;
         cursor:-webkit-grab;
         cursor:-moz-grab;

@@ -74,7 +74,6 @@ app.controller('emailBuildCtrl', function ($scope, $http, $location) {
 		
 		}).then(function(response){
 			$scope.file = response.data;
-			console.log(response.data);
 			$scope.showFileSelect();
 			$scope.status.mode = "working";
 			$scope.addUnloadEvent();
@@ -183,7 +182,7 @@ app.controller('emailBuildCtrl', function ($scope, $http, $location) {
 		
 		if (sectiontype === "story") {
 			newSection.date  = "";
-			newSection.image = "./images/default/default.png";
+			newSection.image = null;
 			newSection.color = "#E5D9C4";
 			newSection.text = "Type your text here!";
 		}
@@ -327,8 +326,8 @@ app.controller('imageCtrl', function ($scope, $http) {
 		imgTitle : "",
 		imageFile : "",
 		status: "uploading", //Initialize status of the image creation wizard.
-		x : 250, //x-coordinate for img on canvas; starts halfway across canvas
-		y : 150, //y-coordinate for img on canvas; starts halfway down canvas
+		x : 400, //x-coordinate for img on canvas; starts halfway across canvas
+		y : 200, //y-coordinate for img on canvas; starts halfway down canvas
 		imgWidth : 0, //current width, for use in zoom function
 		imgHeight : 0, //current height, for use in zoom function
 		lastX : 0,
@@ -354,7 +353,7 @@ app.controller('imageCtrl', function ($scope, $http) {
 	//Drag and Drop. If .isAdvanceUpload evaluates as true, the upload wrap gets additional styling via ng-class
 	$scope.isAdvancedUpload = (function() {
 		var div = document.createElement('div');
-		return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in 			window;
+		return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window;
 	})();
 	
 	//Angular doesn't like file inputs, so this function is necessary till that's fixed
@@ -373,7 +372,7 @@ app.controller('imageCtrl', function ($scope, $http) {
 		//reset canvas variables in case user has loaded a second image during one session
 		$scope.imgCreation.canvasZoom = 1;
 		$scope.imgCreation.x = 400;
-		$scope.imgCreation.y = 250;
+		$scope.imgCreation.y = 200;
 		
 		var imageType = /^image\//; 
 		
@@ -475,16 +474,16 @@ app.controller('imageCtrl', function ($scope, $http) {
 			ctx.moveTo(0,0);
 			ctx.lineTo(0,0);
 			ctx.lineTo(800,0);
-			ctx.lineTo(800,500);
-			ctx.lineTo(0,500);
+			ctx.lineTo(800,400);
+			ctx.lineTo(0,400);
 			ctx.lineTo(0,0);
 			ctx.closePath();
 			
 			//inner square (hole)
 			ctx.moveTo(700,50);
 			ctx.lineTo(100,50);
-			ctx.lineTo(100,450);
-			ctx.lineTo(700,450);
+			ctx.lineTo(100,350);
+			ctx.lineTo(700,350);
 			ctx.lineTo(700,50);
 			ctx.closePath();
 			

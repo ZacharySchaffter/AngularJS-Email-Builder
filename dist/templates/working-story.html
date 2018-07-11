@@ -1,6 +1,7 @@
 <div class="story">
-	<div class="story-edit__img">
-        <img ng-src="{{section.image}}" alt="Image Preview" ng-click="showImageSelect($index)">
+	<div class="story-edit__img" ng-click="showImageSelect($index)" ng-class="{'story-edit__img--none-selected' : !section.image }">
+        <div ng-if="!section.image" class="story-edit__img__default">Click to add a banner image</div>
+        <img ng-if="section.image" ng-src="{{section.image}}" alt="{{section.image}}">
     </div>  
     <div class="story-edit__content">
         <div class="story-edit__title">
@@ -14,17 +15,16 @@
         <div class="story-edit__button" ng-class="{grow:section.readmorebutton.active}">
         	<div class="story-edit__button__checkbox">
                 <input ng-model="section.readmorebutton.active" type="checkbox" id="{{'buttonselect-'+$index}}" />
-                <label for="{{'buttonselect-'+$index}}"></label>
+                <label for="{{'buttonselect-'+$index}}"><span ng-if="!section.readmorebutton.active">Include a button</span></label>
             </div>
             <div class="story-edit__button__content">
-				<div ng-show="!section.readmorebutton.active" class="text">
-            		Include a button
-           		 </div>
-                 <div ng-show="section.readmorebutton.active" class="inputs">
-                    <label>Text:</label> <input style="display:inline-block;" type="text" ng-disabled="!section.readmorebutton.active" ng-model="section.readmorebutton.text" ng-value="section.readmorebutton.text" placeholder="What should the button say?"></input>
+                <div ng-show="section.readmorebutton.active" class="inputs">
+                    <label for="{{'buttontext-'+$index}}">Text:</label> 
+                    <input id="{{'buttontext-'+$index}}" type="text" ng-disabled="!section.readmorebutton.active" ng-model="section.readmorebutton.text" ng-value="section.readmorebutton.text" placeholder="What should the button say?"></input>
                     <br>
-                    <label>Link:</label> <input style="display:inline-block;" type="text" ng-disabled="!section.readmorebutton.active" ng-model="section.readmorebutton.link" ng-value="section.readmorebutton.link" placeholder="Where should it link to?"></input>
-                 </div>
+                    <label for="{{'buttonlink-'+$index}}">Link:</label> 
+                    <input id="{{'buttonlink-'+$index}}" type="text" ng-disabled="!section.readmorebutton.active" ng-model="section.readmorebutton.link" ng-value="section.readmorebutton.link" placeholder="Where should it link to?"></input>
+                </div>
             </div>
         </div>
     </div> 
@@ -35,5 +35,5 @@
 </div>
 
 <div class="add-section">
-    <div class="add-section__btn" ng-click="addSection($index, 'story')">Add new article</div>
+    <div class="add-section__btn" ng-click="addSection($index, 'story')"><span class="fa fa-plus"></span> Add new article</div>
 </div>

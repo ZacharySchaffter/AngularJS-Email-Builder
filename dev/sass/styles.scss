@@ -4,14 +4,25 @@
 //Variables
 @import './variables/colors';
 
+//elements
+@import './elements/buttons';
+
 //partials
 @import './partials/default-screen';
 @import './partials/email-section';
+@import './partials/email-section-preview';
 @import './partials/email-banner';
 @import './partials/textAngular-fixes';
 @import './partials/imageControl';
 @import './partials/imageUpload';
 @import './partials/addSection';
+@import './partials/menu';
+@import './partials/fileSelect';
+
+
+* {
+	box-sizing:border-box;
+}
 
 html {
 	height:100%;
@@ -19,15 +30,17 @@ html {
 
 body {
 	position:relative;
-	padding-left:200px; 
+	padding-left:220px; 
 	padding-right:25px;
 	height:100%;
-	background-color:#fff;
+	background-color:#ccc;
+	font-family:'Open Sans', Arial, Helvetica, sans-serif;
+
 }
 
   
-  /*clearfix*/
-  .group:after {
+//clearfix
+  .clearfix:after {
     content: "";
     display: table;
     clear: both;
@@ -43,6 +56,9 @@ body {
 	position:relative;
 	box-sizing:border-box;
 	height:100%;
+	max-width:800px;
+	padding:0 100px;
+	margin:0 auto;
 }
 	
 
@@ -76,66 +92,6 @@ body {
 	}
 	
 	
-/*Navigation*/	
-.menu {
-	position:fixed;
-	left:0;
-	top:0;
-	width:175px;
-	height:100%;
-	box-sizing:border-box;
-	border-right:1px solid #222;
-	color:#FFF;
-	box-shadow:1px 1px 2px rgba(0,0,0,0.3);
-	
-	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#62616d+0,383c49+100 */
-background: #62616d; /* Old browsers */
-background: -moz-linear-gradient(-45deg,  #62616d 0%, #383c49 100%); /* FF3.6-15 */
-background: -webkit-linear-gradient(-45deg,  #62616d 0%,#383c49 100%); /* Chrome10-25,Safari5.1-6 */
-background: linear-gradient(135deg,  #62616d 0%,#383c49 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#62616d', endColorstr='#383c49',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-
-
-	
-	}
-	
-.menu .header {
-	text-align:center;
-	text-shadow:1px 1px 0px rgba(0,0,0,0.3);
-	font-size:1.5em;
-	padding:.75em .25em;
-	
-	}
-	
-	
-ul.nav li {
-	border-bottom:1px solid #333;
-	cursor:pointer;
-	padding-right:5px;
-	transition:100ms all;
-	}
-	
-ul.nav li span.fa {
-	display:inline-block;
-	padding:.5em; 
-	font-size:1.25em;
-	width:2em;
-	margin-right:.5em; 
-	border-right:1px solid rgba(0,0,0,.3);
-	}
-	
-ul.nav li:first-child {
-	border-top:1px solid #333;
-	}
-
-ul.nav li:hover {
-	/*background:#808084;*/
-	background:#38383E;
-	color:white;	
-	padding-right:0px;
-	border-right:5px solid #ccc;
-	
-	}
 
 
 
@@ -175,11 +131,7 @@ ul.nav li:hover {
 		outline: none;
 	}
 	
-	body {
-		font-family:'Open Sans', Arial, Helvetica, sans-serif;
-		font-size:10px;
-		
-	}
+
 	
 	h1 {margin:.25em 0 1em;}
 	
@@ -263,50 +215,6 @@ ul.nav li:hover {
 	
 	
 
-/**** BUTTONS ****/
-
-	.button{
-		display:inline-block;
-		padding:.5em 1em;
-		border-radius:5px;
-		box-shadow:1px 1px 2px rgba(0,0,0,.3);
-		cursor:pointer;
-		margin:.5em;
-		border:1px solid #888;
-		background:rgba(255,255,255,.2);
-		color:#FFF;
-		transition: all .5s;
-	}
-	
-	.button:hover{
-		border:1px solid #888;
-	}
-	
-	
-/*Red button*/
-	.button.red {
-		color:#FFF;
-		background:#bb1c1c;
-		border:1px solid #8b1d1d;	
-	}
-	
-	.button.red:hover{
-		background:#d63535;
-		border:1px solid #8b1d1d;	
-	}
-	
-	
-/*Green button*/
-	.button.green {
-		color:#FFF;
-	 	background:#30CC30;
-		border:1px solid #589A58
-	}
-	
-	.button.green:hover {
-		background:#5BDE5B;
-		border:1px solid #589A58
-	}
 	
 /*Entrance Animation*/
 	@keyframes popupExpand {
@@ -351,93 +259,7 @@ ul.nav li:hover {
 
 
 
-	
-	
-/*****************************************************
 
-				File Select CSS
-
-*****************************************************/
-
-.file-select-wrap {
-	position:fixed;
-	z-index:200;
-	top:0;
-	left:0;
-	height:100%;
-	width:100%;
-	padding:1em 2em;
-	
-		
-}
-
-.file-select-box {
-	position:relative;
-	z-index: 10000;
-	box-shadow:1px 3px 30px rgba(0,0,0,0.7);
-	width:500px;
-	padding:1em;
-	margin:0 auto;
-	border:1px solid #999;
-	border-radius:5px;
-	background:rgba(255,255,255,.8);		
-}
-
-.file-select-box .search {
-	display:inline-block;
-	float:right;
-	}
-
-.file-select-items {
-	background:#FFF;
-	border:1px solid #888;	
-	padding:.5em 1em;
-	max-height:500px;
-	overflow:scroll;
-}
-
-.file-select-items span {
-	display:block;
-	background:#588AC3;
-	margin:1em 0em .5em;
-	padding:.25em;
-	color:#FFF;
-	font-style:italic;	
-}
-
-.file-select-items div div {
-	padding:.25em; 
-	margin-left:.25em;
-	border-bottom:1px dashed #ccc;
-	border-left:1px solid #ccc;
-	cursor:pointer;
-	transition:.3s all;
-}
-
-.file-select-items div div:hover {
-	background:#ccc;
-
-}
-
-.file-select-items .file-select-year div:last-child {border-bottom:0;}
-
-.file-select-title {
-	text-transform:uppercase;	
-}
-
-.filename-input {
-	width:100%; 
-	padding:.25em 0;
-
-	input {
-		width:90%; 
-		padding:0.25em;
-	}
-
-	button {
-		padding:0.25em;
-	}
-}
 
 
 

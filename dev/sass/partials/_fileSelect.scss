@@ -1,0 +1,85 @@
+  
+  
+/*****************************************************
+
+        File Select CSS
+
+*****************************************************/
+
+.file-select-wrap {
+  position:fixed;
+  z-index:200;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  padding:1em 2em;
+  
+    
+}
+
+.file-select-box {
+  position:relative;
+  z-index: 10000;
+  box-shadow:1px 3px 30px rgba(0, 0 , 0, 0.7);
+  width:500px;
+  padding:1em;
+  margin:0 auto;
+  border:1px solid #999;
+  border-radius:5px;
+  background:rgba(255, 255, 255, .8);    
+  .search {
+    display:inline-block;
+    float:right;
+  }
+}
+
+.file-select-items {
+  background:#fff;
+  border:1px solid #888;  
+  padding:.5em 1em;
+  max-height:500px;
+  min-height:200px;
+  overflow-y:scroll;
+
+  span {
+    display:block;
+    background:#588ac3;
+    margin:1em 0 .5em;
+    padding:.25em;
+    color:#fff;
+    font-style:italic;  
+  }
+  div div {
+    padding:.25em; 
+    margin-left:.25em;
+    border-bottom:1px dashed #ccc;
+    border-left:1px solid #ccc;
+    cursor:pointer;
+    transition:.3s all;
+
+    &:hover {
+      background:#ccc;
+    }
+  }
+
+  .file-select-year div:last-child {border-bottom:0;}
+}
+
+.file-select-title {
+  text-transform:uppercase; 
+}
+
+.filename-input {
+  width:100%; 
+  padding:.25em 0;
+
+  input {
+    width:90%; 
+    padding:0.25em;
+  }
+
+  button {
+    padding:0.25em;
+  }
+}

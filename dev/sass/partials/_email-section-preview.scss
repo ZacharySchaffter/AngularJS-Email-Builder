@@ -1,0 +1,41 @@
+.story.preview-story {
+  margin: 0 auto .5em; 
+  min-height:auto; 
+  box-shadow:none; 
+  border-radius: 0; 
+  border-bottom: 1px solid #f1ece1;
+
+  .preview-title {
+    font-size:18px; 
+    font-weight:bold;
+  }
+
+  .preview-date {
+    font-style:italic; 
+    font-weight:bold;
+  }
+
+  .preview-text {
+    font-size:16px; 
+    line-height:140%;
+  }
+
+  td {
+    &.preview-image-cell {
+      padding:5px 10px; 
+      vertical-align:top;
+
+      img {
+        width:100%;
+      }
+    }
+
+    &.preview-content-cell {
+      vertical-align:top;
+      padding:5px 10px 5px 5px;
+    }
+  }
+
+  &>table {width:100%;}
+
+}  

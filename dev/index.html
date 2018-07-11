@@ -6,8 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Internal E-mail Builder</title>
     
-    <!--Main Stylesheet-->
-    <link rel="stylesheet" type="text/css" href="./css/styles.css">
+    
 
     <!--Fonts-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,300italic,700,700italic" rel="stylesheet" type="text/css">
@@ -30,7 +29,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.9/angular-animate.js"></script>
 
-    <!--Bootstrap-->
+    <!--Bootstrap (required for textAngular)-->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
     
     <!--textAngular-->
@@ -45,6 +44,9 @@
 	<!--App stuff-->
 	<script src="./js/app.js"></script>
     <script src="./js/imageEditCtrl.js"></script>
+
+    <!--Main Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="./css/styles.css">
 
 	
 </head>
@@ -114,13 +116,14 @@
     <div class="image-wrap animate-switch-container animate-show-fade" ng-show="imageDivVisible" ng-controller="imageCtrl" ng-switch on="imageWindow" ng-init="imageWindow = 'select'; loadImages();">
     	<div class="image-inner-wrap">        
             <div class="image-select animate-switch" ng-switch-when="select">
-                <div class="button add-new-image-button" ng-click="addNewImage()"><span class="fa fa-lg fa-plus"></span> Add new image</div>
                 
-                <div class="image-select-section" ng-repeat="folder in images">
+                <div class="button image-select__add-new-img-btn" ng-click="addNewImage()"><span class="fa fa-lg fa-plus"></span> Add new image</div>
+                
+                <div class="image-select__section" ng-repeat="folder in images">
                     <h4>{{folder.year}}</h4>
-                    <div ng-repeat="image in folder.images">
-                        <img ng-src="{{'./images/'+folder.year+'/'+image}}"  ng-click="changeImage('./images/'+folder.year+'/'+image)" alt="{{image}}">
-                        <div class="fa-stack fa-lg deleteButton" ng-click="deleteImg([folder.year,image])">
+                    <div class="image-select__item" ng-repeat="image in folder.images">
+                        <img ng-src="{{ './images/' + folder.year + '/' + image }}"  ng-click="changeImage('./images/'+folder.year+'/'+image)" alt="{{image}}">
+                        <div class="fa-stack fa-lg image-select__item__delete-btn" ng-click="deleteImg([folder.year,image])">
                             <span class="fa fa-circle fa-stack-2x"></span>
                             <span class="fa fa-times fa-stack-1x"></span>
                         </div>
@@ -144,7 +147,7 @@
                         <div class="canvas-wrap group">
                             <!--Main Canvas that shows overlay-->
                             <div class="main-canvas">
-                                <canvas id="myCanvas" width="800" height="500" z-canvas-drag></canvas>
+                                <canvas id="myCanvas" width="800" height="400" z-canvas-drag></canvas>
                                 <div class="zoom-wrap">
                                     <input id="zoomSlider" type="range" min="1" max="200" step="0.5"
                                         ng-model="imgCreation.zoom"
@@ -157,7 +160,7 @@
                             <div class="preview-canvas-wrap">
                                 <div class="preview-canvas">
                                     <div>Preview:</div>
-                                    <canvas id="previewCanvas" width="600" height="400"></canvas>
+                                    <canvas id="previewCanvas" width="600" height="300"></canvas>
                                 </div>
                             </div>
                         </div><!--end canvas-wrap-->

@@ -3,4 +3,10 @@
 .form-control {height:auto!important;}
 .story ul, .story ol {padding-left:25px;}
 .story blockquote {font-size:1em;}
-.ta-hidden-input {display:none}
+.ta-hidden-input {displaWy:none}
+
+//Shorten the min-height of textAngular window
+.ta-scroll-window.form-control,
+.ta-scroll-window > .ta-bind {
+  min-height:200px;
+}
