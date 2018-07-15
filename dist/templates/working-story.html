@@ -1,10 +1,10 @@
 <div class="story">
-	<div class="story-edit__img" ng-click="showImageSelect($index)" ng-class="{'story-edit__img--none-selected' : !section.image }">
-        <div ng-if="!section.image" class="story-edit__img__default">Click to add a banner image</div>
+	<div class="email-article__img" ng-click="showImageSelect($index)" ng-class="{'email-article__img--none-selected' : !section.image }">
+        <div ng-if="!section.image" class="email-article__img__default">Click to add a banner image</div>
         <img ng-if="section.image" ng-src="{{section.image}}" alt="{{section.image}}">
     </div>  
-    <div class="story-edit__content">
-        <div class="story-edit__title">
+    <div class="email-article__content">
+        <div class="email-article__title">
             <label for="{{'title-'+$index}}" class="sr-only">Title of article:</label>
             <input id="{{'title-'+$index}}" class="title" ng-model="section.title" type="text" placeholder="Add a title" onInput="" ng-value="section.title">
         </div>
@@ -12,12 +12,12 @@
         <!--<input id="{{'date-'+$index}}" class="date" ng-model="section.date" type="text" placeholder="Your date here" onInput="" ng-value="section.date">-->
         <div taOptions text-angular ng-model="section.text"></div>
 
-        <div class="story-edit__button" ng-class="{grow:section.readmorebutton.active}">
-        	<div class="story-edit__button__checkbox">
+        <div class="email-article__button" ng-class="{grow:section.readmorebutton.active}">
+        	<div class="email-article__button__checkbox">
                 <input ng-model="section.readmorebutton.active" type="checkbox" id="{{'buttonselect-'+$index}}" />
                 <label for="{{'buttonselect-'+$index}}"><span ng-if="!section.readmorebutton.active">Include a button</span></label>
             </div>
-            <div class="story-edit__button__content">
+            <div class="email-article__button__content">
                 <div ng-show="section.readmorebutton.active" class="inputs">
                     <label for="{{'buttontext-'+$index}}">Text:</label> 
                     <input id="{{'buttontext-'+$index}}" type="text" ng-disabled="!section.readmorebutton.active" ng-model="section.readmorebutton.text" ng-value="section.readmorebutton.text" placeholder="What should the button say?"></input>
@@ -28,7 +28,7 @@
             </div>
         </div>
     </div> 
-    <div class="story-edit__delete" ng-click="remove($index)">
+    <div class="email-article__delete" ng-click="remove($index)">
         <span class="fa fa-trash"></span>
         <span>Delete article</span>
     </div>  

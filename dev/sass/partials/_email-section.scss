@@ -15,14 +15,16 @@
   position:relative;
 
   .story,
-  .banner {
+  .banner,
+  .email-article {
     margin:.5em auto;
     padding:15px;
     box-shadow:1px 1px 2px rgba(0, 0, 0, 0.3);
     border-radius:5px;
   }
 
-  .story {
+  .story,
+  .email-article {
     @extend .clearfix;
     width:100%;
     max-width:630px;
@@ -36,24 +38,18 @@
       padding:0.5em;
     }
 
-    .story-edit__title {
+    .email-article__title {
       margin-bottom:1em;
     }
     
 
-    .story-edit__img,
-    .story-edit__content,
-    .story-edit__delete {
-      //TODO: use flexbox
-    }
-
-    .story-edit__img,
-    .story-edit__delete {
+    .email-article__img,
+    .email-article__delete {
       //width:140px;
       text-align:center;
     }
 
-    .story-edit__delete {
+    .email-article__delete {
       float:right;
       display:inline-block;
       color:#000;
@@ -71,9 +67,9 @@
       }
     }
 
-    .story-edit__img {
-      border:4px solid #ccc;
-      background-color:lighten(#ccc, 5%);
+    .email-article__img {
+      border:2px solid #ccc;
+      background-color:#f0f0f0;
       cursor:pointer;
       overflow:hidden;
       display:flex;
@@ -81,14 +77,14 @@
       justify-content:center;
       transition:all 250ms ease;
 
-      &.story-edit__img--none-selected {
-        height:200px;
+      &.email-article__img--none-selected {
+        height:125px;
         color:#777;
         font-style:italic;
       }
 
       &:hover {
-        border:4px solid #999;
+        background:#fff;
       }
 
       img {
@@ -98,7 +94,7 @@
 
     }
 
-    .story-edit__button {
+    .email-article__button {
       position:relative;
       margin:.25em 0; 
       border:1px dashed #fff; 
@@ -107,7 +103,7 @@
       display:flex;
       align-items:center;
 
-      .story-edit__button__checkbox {
+      .email-article__button__checkbox {
         width: 50px;  
         margin: 10px auto;
         position: relative;
@@ -166,7 +162,7 @@
         }
       }  
 
-      .story-edit__button__content {
+      .email-article__button__content {
         transition:300ms all; 
         width:150px; 
         flex:1 0 150px;
@@ -182,9 +178,7 @@
 
       }
 
-      &.grow {
-        //class to expand when the elements grow in
-      }   
+      
     }
   }
 }
