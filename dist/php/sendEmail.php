@@ -3,7 +3,10 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && empty($_POST))
 	$_POST = json_decode(file_get_contents('php://input'), true);
 		
-$baseImagePath = "http:\/\/media.inhouse.opers.org\/media\/applications\/emailBuilder\/";
+//Directory to use for the images in the e-mail.  Change this if you ever migrate to a diff. server.
+$imageDirectory = "development/applications/email-builder/images/";
+$baseImagePath = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]/" . $imageDirectory;
+
 
 $result = [
 	"error" => false,
@@ -48,7 +51,8 @@ foreach($file["sections"] as $section) {
 		//If it's a story, populate the template
 		if ($section["type"] == "story") {
 				$content = $storyTemplate;
-				
+
+				$content = str_replace("{{imageSource}}", $baseImagePath, $content);
 				$content = str_replace("{{image}}", $section["image"], $content);
 				$content = str_replace("{{title}}", $section["title"], $content);
 				

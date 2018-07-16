@@ -1,7 +1,7 @@
 <div class="story">
 	<div class="email-article__img" ng-click="showImageSelect($index)" ng-class="{'email-article__img--none-selected' : !section.image }">
         <div ng-if="!section.image" class="email-article__img__default">Click to add a banner image</div>
-        <img ng-if="section.image" ng-src="{{section.image}}" alt="{{section.image}}">
+        <img ng-if="section.image" ng-src="{{baseImagePath + section.image}}" alt="{{section.image}}">
     </div>  
     <div class="email-article__content">
         <div class="email-article__title">

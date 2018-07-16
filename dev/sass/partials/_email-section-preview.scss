@@ -1,5 +1,5 @@
 .email-article.email-article--preview {
-  margin: 0 auto .5em; 
+  margin: 0 auto 16px; 
   padding:0;
   min-height:auto; 
   box-shadow:none; 
@@ -26,6 +26,7 @@
     font-size:22px; 
     font-weight:bold;
     padding:20px 30px;
+    margin-bottom:0;
     color: $color--headings-default;
   }
 
@@ -39,6 +40,15 @@
     line-height:140%;
     padding:0 30px 20px;
     color:$color--text-default;
+
+    p {
+      padding-bottom:1em;
+    }
+
+    ul,
+    ol {
+      padding-left:1.5em;
+    }
   }
 
   .email-article__btn {

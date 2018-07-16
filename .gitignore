@@ -6,7 +6,7 @@ thumbs.db
 *.log
 node_modules/
 dist/images/*
-!dist/images/trash
+dist/saves/*
 dist/images/trash/*
 !dist/images/default
 dev/images/*

@@ -7,7 +7,8 @@ app.controller('emailBuildCtrl', function ($scope, $http, $location) {
 	//Status initializes as 'blank'
 	//Once a file is loaded 'working' and 'preview' toggle between editable and preview states
 	$scope.status = {mode: "blank"};
-	
+	$scope.baseImagePath = window.location.href+'images/';
+
 	//Toggles between working and preview settings
 	$scope.toggleEditingStatus = function(){
 		if($scope.status.mode === "working") {
@@ -67,13 +68,20 @@ app.controller('emailBuildCtrl', function ($scope, $http, $location) {
 		var filename = this.file + ".txt";
 		//add a query to prevent loadFile() from returning a cached version of the file
 		var query = new Date().getTime();
-		console.log("./saves/"+year+"/"+filename);
 		$http({
 			url: "./saves/"+year+"/"+filename+"?"+query,
 			method: "GET",
 		
 		}).then(function(response){
-			$scope.file = response.data;
+			var data = response.data; 
+      for (var i = 0; i < data.sections.length; i++) {
+      	//this loop strips out all section items that are null.  Not sure how they get added, but they do.
+        if (data.sections[i] == null) {         
+          data.sections.splice(i, 1);
+          i--;
+        }
+      }
+			$scope.file = data;
 			$scope.showFileSelect();
 			$scope.status.mode = "working";
 			$scope.addUnloadEvent();
@@ -99,7 +107,6 @@ app.controller('emailBuildCtrl', function ($scope, $http, $location) {
 				$scope.confirmOverwrite = true;
 				return;
 			} else {
-				console.log(response.data);
 				$scope.showFileSelect();
 				$scope.confirmOverwrite = false;
 				$scope.removeUnloadEvent();	
@@ -118,40 +125,38 @@ app.controller('emailBuildCtrl', function ($scope, $http, $location) {
 		
 	//UI Sortable Functions
 	
-		/* Function that tracks scrolling.  It prevents a weird jQuery UI sortable bug that causes a jerky jump up the page when sorting lists taller than the window.  Removing this will cause the drag/drop sort function to jump around a bit, but won't break it. entirely*/ 
-		var lastScrollPosition = 0;
-		var tempScrollPosition = 0;
+	/* Function that tracks scrolling.  It prevents a weird jQuery UI sortable bug that causes a jerky jump up the page when sorting lists taller than the window.  Removing this will cause the drag/drop sort function to jump around a bit, but won't break it. entirely*/ 
+	var lastScrollPosition = 0;
+	var tempScrollPosition = 0;
+	
+	window.onscroll = function () { 
+		clearTimeout($.data(this, 'scrollTimer'));
 		
-		window.onscroll = function () { 
-			clearTimeout($.data(this, 'scrollTimer'));
-			$.data(this, 'scrollTimer', setTimeout(function () {
-				tempScrollPosition = lastScrollPosition; 
-			}, 250));
-			
-			lastScrollPosition = $(document).scrollTop(); // Up to you requirement you may change it to another elemnet e.g $("#YourPanel").onscroll
-		};
+		$.data(this, 'scrollTimer', setTimeout(function () {
+			tempScrollPosition = lastScrollPosition; 
+		}, 250));
+		
+		lastScrollPosition = $(document).scrollTop(); // Up to you requirement you may change it to another elemnet e.g $("#YourPanel").onscroll
+	};
 		
 	//Sortable options	
 	$scope.sortableOptions = {
 		axis: 'y',
 		delay: 150,
 		opacity: 0.7,
-		//placeholder: "sectionPlaceHolder",
 		start: function(e, ui){
 			//Bind the function to prevent the sorting from jumping around
-			$(document).scrollTop(tempScrollPosition);	
-				
-			},
+			$(document).scrollTop(tempScrollPosition);			
+		},
 		stop: function(e, ui){
 			
-			}
+		}
 		
 	};
 	
 	//Quick function to check if user reeeeally wants to leave the page.  Added because Kristen kept losing unsaved changes.
 	//Some people, amirite.
 	$scope.addUnloadEvent = function(){
-		console.log("adding event");
 		if (window.addEventListener) {
 		   window.addEventListener("beforeunload", handleUnloadEvent);
 		} else {
@@ -161,8 +166,7 @@ app.controller('emailBuildCtrl', function ($scope, $http, $location) {
 	};
 	
 	function handleUnloadEvent(event) {
-		event.returnValue = "Any unsaved changes will be lost.";
-	   
+		event.returnValue = "Any unsaved changes will be lost.";   
 	}
 	
 	$scope.removeUnloadEvent = function() {
@@ -218,10 +222,9 @@ app.controller('emailBuildCtrl', function ($scope, $http, $location) {
 		}).then(function(response){
 			if (response.data.error) {
 				$scope.sendEmailError = response.data.msg;
-				console.log(response.data);
 			
 			} else {
-				console.log(response.data);
+				console.log(response);
 				$scope.sendEmailError = "";
 				$scope.sendDialog = false;
 			}
@@ -248,7 +251,6 @@ app.controller('emailBuildCtrl', function ($scope, $http, $location) {
 		$scope.imageDivVisible = true;	
 		//Console.log index you're attempting to change
 		$scope.indexToChange = index;
-		console.log("Showing image select, planning to change index", $scope.indexToChange);
 	};
 	
 	//Function to hide image-wrap
@@ -285,7 +287,6 @@ app.controller('emailBuildCtrl', function ($scope, $http, $location) {
 		var mondaysMonth = nextMonday.getMonth();
 		var month = monthNames[mondaysMonth];
 		var dd = nextMonday.getDate();
-		console.log(month, dd);
 		return "The week of "+month+" "+dd;
 		
 		
@@ -303,8 +304,6 @@ app.controller('imageCtrl', function ($scope, $http) {
 			method: "GET",
 			
 		}).then(function(response){
-			console.log("Get Images:");
-			console.log(response);
 			$scope.images = response.data;
 		});
 		
@@ -314,8 +313,6 @@ app.controller('imageCtrl', function ($scope, $http) {
 		};
 	
 	};
-	
-	
 	
 	/*image creation object*/
 	$scope.imgCreation = {

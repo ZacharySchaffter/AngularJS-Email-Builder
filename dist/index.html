@@ -81,7 +81,7 @@
             </div>
             
             <div class="email-banner" ng-if="status.mode=='preview'">
-            	<img src="./img/email-banner.jpg" alt="Email Banner">
+            	<img src="./img/email-banner.png" alt="Email Banner">
             </div>
             <!--<div class="email-date-bar" ng-if="status.mode=='preview'">
             	<div>
@@ -98,7 +98,7 @@
             <div id="sections-wrap" ui-sortable="sortableOptions" ng-model="file.sections" ng-class="{'preview' : status.mode=='preview'}">    <div class="add-section" ng-if="status.mode === 'working'">
                     <div class="add-section__btn" ng-click="addSection(0, 'story')"><span class="fa fa-plus"></span> Add new article</div>
                 </div>
-                    
+
                 <div id="{{'section' + $index}}" class="section" ng-repeat="section in file.sections" ng-switch on="section.type">
                     <div ng-switch-when="story" ng-switch on="status.mode">
                    		<working-story ng-switch-when="working"></working-story>
@@ -125,7 +125,7 @@
                 <div class="image-select__section" ng-repeat="folder in images">
                     <h4>{{folder.year}}</h4>
                     <div class="image-select__item" ng-repeat="image in folder.images">
-                        <img ng-src="{{ './images/' + folder.year + '/' + image }}"  ng-click="changeImage('./images/'+folder.year+'/'+image)" alt="{{image}}">
+                        <img ng-src="{{ baseImagePath + '/' + folder.year + '/' + image }}"  ng-click="changeImage(folder.year+'/'+image)" alt="{{image}}">
                         <div class="fa-stack fa-lg image-select__item__delete-btn" ng-click="deleteImg([folder.year,image])">
                             <span class="fa fa-circle fa-stack-2x"></span>
                             <span class="fa fa-times fa-stack-1x"></span>
