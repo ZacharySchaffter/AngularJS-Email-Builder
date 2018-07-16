@@ -1,0 +1,1 @@
+{"sections":[{"type":"story","title":"","date":"","image":".\/images\/2018\/dogsofsteel-header-bg2.png","color":"#E5D9C4","text":"Type your text here!","readmorebutton":{"active":true,"text":"Read More","link":"www.google.com"}},{"type":"story","title":"","date":"","image":null,"color":"#E5D9C4","text":"Type your text here!"}],"week":"The week of July 16"}

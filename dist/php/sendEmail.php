@@ -37,12 +37,12 @@ if(empty($_POST["recipient"])) {
 //email is the whole email
 //email body are the sections from the app which are compiled and added the the email string
 
-$email = file_get_contents('./templates/email-wrap.html');
+$email = file_get_contents('../templates/email-wrap.html');
 $email = str_replace("{{week}}", $file["week"], $email); //replace the date bar with the active week 
 
 $emailBody;
-$storyTemplate = file_get_contents('./templates/email-story.html'); 
-$bannerTemplate = file_get_contents('./templates/email-banner.html');
+$storyTemplate = file_get_contents('../templates/email-story.html'); 
+$bannerTemplate = file_get_contents('../templates/email-banner.html');
 
 foreach($file["sections"] as $section) {
 		//If it's a story, populate the template
@@ -66,7 +66,7 @@ foreach($file["sections"] as $section) {
 				};
 			
 				if ($section["readmorebutton"]["active"]) {
-					$buttonTemplate = file_get_contents('./templates/email-button.html'); 
+					$buttonTemplate = file_get_contents('../templates/email-button.html'); 
 					$content = str_replace("{{button}}", $buttonTemplate, $content);
 					$content = str_replace("{{buttontext}}", $section["readmorebutton"]["text"], $content);	
 					$content = str_replace("{{buttonlink}}", $section["readmorebutton"]["link"], $content);		

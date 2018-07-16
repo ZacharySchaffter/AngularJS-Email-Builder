@@ -177,20 +177,17 @@ app.controller('emailBuildCtrl', function ($scope, $http, $location) {
 	$scope.addSection = function(index, sectiontype) {
 		var newSection = {
 			"type"  : sectiontype,
-			"title" : "",
+			"title" : "Type your text here."
 		};
 		
 		if (sectiontype === "story") {
 			newSection.date  = "";
 			newSection.image = null;
-			newSection.color = "#E5D9C4";
-			newSection.text = "Type your text here!";
+			newSection.text = "Type your title here.";
 		}
 		
 		//Add new section to array at specified index;
-		$scope.file.sections.splice(index+1, 0, newSection);
-        //$scope.sections.push(newSection);
-		
+		$scope.file.sections.splice(index, 0, newSection);
 		
     };
 	

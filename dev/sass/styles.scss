@@ -18,6 +18,7 @@
 @import './partials/addSection';
 @import './partials/menu';
 @import './partials/fileSelect';
+@import './partials/send-email-dialog';
 
 
 * {
@@ -33,18 +34,18 @@ body {
 	padding-left:220px; 
 	padding-right:25px;
 	height:100%;
-	background-color:#ccc;
+	background-color:$color--bg-default;
 	font-family:'Open Sans', Arial, Helvetica, sans-serif;
 
 }
 
   
 //clearfix
-  .clearfix:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
+.clearfix::after {
+  content: '';
+  display: table;
+  clear: both;
+}
 
 .content-wrap {
 	min-width:800px; 
@@ -56,15 +57,21 @@ body {
 	position:relative;
 	box-sizing:border-box;
 	height:100%;
-	max-width:800px;
-	padding:0 100px;
+	max-width:600px;
+	padding:0;
 	margin:0 auto;
 }
 	
 
 
 
-.email-banner {width:100%;  padding:15px 30px 5px; img {width:100%;}}
+.email-banner {
+	width:100%;  
+	padding:15px 30px 5px; 
+	img {
+		width:100%;
+	}
+}
 .email-date-bar {background:#ddcca5; border-bottom:1px solid #003f87; width:100%;}
 .email-date-bar div{text-align:right; color:#003f87; font-weight:bold;font-style:italic; width:590px; padding:3px 5px; margin:0 auto;}
 
@@ -144,7 +151,10 @@ body {
 		font-size:1.6em;
 	}
 		
-	.title-banner div.title-text {float:left; font-size:2em;}
+	.title-banner div.title-text {
+		float:left; 
+		font-size:2em;
+	}
 	
 	.title-banner div {float:right;}
 	
@@ -262,43 +272,6 @@ body {
 
 
 
-
-/*****************************************************
-
-				Send Dialog CSS
-
-*****************************************************/
-.send-dialog-wrap {
-	position:fixed;
-	z-index:1000;
-	top:0;
-	left:0;
-	height:100%;
-	width:100%;
-	padding:1em 2em;
-	
-		
-}
-.send-dialog {
-	position:relative;
-	-webkit-transform:translateY(-50%);
-	transform:translateY(-50%);
-	top:35%;
-	z-index: 10000;
-	box-shadow:1px 3px 30px rgba(0,0,0,0.7);
-	width:300px;
-	padding:1em;
-	margin:0 auto;
-	border:1px solid #999;
-	border-radius:5px;
-	background:rgba(255,255,255,.8);		
-}
-
-.send-dialog label {width:60px; text-align:right;}
-.send-dialog input {width:205px;}
-.send-dialog .title {font-size:18px; font-weight:bold; text-align:center;}
-.send-dialog button {margin:5px 0; width:100%; text-align:center;}
-.send-dialog .error {font-style:italic; color:#FF0000;}
 
 
 /**********************************

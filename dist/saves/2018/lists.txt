@@ -1,0 +1,1 @@
+{"sections":[{"type":"story","title":"Robot Man","date":"","image":".\/images\/2018\/robot.png","color":"#E5D9C4","text":"<p>Hello this is a bulleted list<\/p><p><br\/><\/p><ul><li>Item 1<\/li><li>Item 2<\/li><li>Item 3<br\/><\/li><\/ul>","readmorebutton":{"active":true,"text":"Read More","link":"https:\/\/www.google.com"}}],"week":"The week of July 16"}

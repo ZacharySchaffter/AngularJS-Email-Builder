@@ -7,5 +7,6 @@ thumbs.db
 node_modules/
 dist/images/*
 !dist/images/trash
+dist/images/trash/*
 !dist/images/default
 dev/images/*

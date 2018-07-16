@@ -1,61 +1,46 @@
 
-  #newImageButton {
-    cursor:pointer;
-    padding:.5em;
-    background:#30CC30;
-    border-radius:4px; 
-    border:1px solid #589A58;
-    color:#FFF;
-    text-shadow:1px 1px 0px rgba(0,0,0,0.3);
-    box-shadow: 0px 1px 1px rgba(0,0,0,0.3);
-    opacity:.7;
-    transition:all .3s;
+.image-select__add-new-img-btn {
+    @extend .button--green;
+    border:1px solid darken($color--green, 15%);
+}
+
+
+#imageEditor {
+  display:none;
+  background:#ccc;
+  border-radius:5px; 
+  box-shadow:rgba(0, 0, 0, 0.3); 
+  width:600px; 
+  margin:0 auto; 
+  height:500px;
+  position:relative;
+}
+
+  
+.gallery-section {
+  margin:1em 0;
+  padding:1em;
+  border-bottom:1px solid #333; 
+
+  &:first-of-type {
+    margin-top:0;
   }
-  
-  #newImageButton:hover {
-    opacity:1;
-  }
-  
-  #imageGallery {
-    background:#CDCDCD; 
-  }
-  
-  #imageEditor {
-    display:none;
-    background:#CCC; 
-    border: 1px solid #003F87; 
-    border-radius:5px; 
-    box-shadow:rgba(0,0,0,.3); 
-    width:600px; 
-    margin:0 auto; 
-    height:500px;
-    position:relative;
-  }
-  
-  
-  .gallery-section:first-child {margin-top:0px;}
-  
-  .gallery-section {
-    margin:1em 0;
-    padding:1em;
-    border-bottom:1px solid #333; 
-  }
-  
-  
-  .gallery-section-image {
-    position:relative;
-    margin:.5em;
-    padding:.5em;
-    box-shadow:1px 1px 2px rgba(0,0,0,0.3);
-    float:left;
-    background:#555;
-    
-  }
-  
-  .gallery-section-image img {
+}
+
+.gallery-section-image {
+  position:relative;
+  margin:.5em;
+  padding:.5em;
+  box-shadow:1px 1px 2px rgba(0, 0, 0, 0.3);
+  float:left;
+  background:#555;
+
+  img {
     display:block;
     margin:0 auto;
   }
+  
+}
   
 
 /*Image-Select*/
@@ -65,7 +50,7 @@
   left:0;
   top:0;
   padding:2em 5em;
-  height:100%;
+  min-height:100%;
   width:100%;
   z-index:10000;
 
@@ -93,17 +78,26 @@
   border-bottom:1px dashed #fff;
   display:flex;
   justify-content:space-between;
+  flex-wrap:wrap;
+
+  h4 {
+    width:100%;
+  }
 
 
   
   .image-select__item {
     position:relative;
     display:inline-block;
-    width:30%;
-    margin:5px auto;
+    width:32%; 
+    margin-bottom:1em;
     border:1px solid #222;
+    opacity:0.9;
+    transition:all 300ms ease;
 
     &:hover {
+      opacity:1;
+      filter: saturate(1.05);
       border:1px solid #555;
 
       .image-select__item__delete-btn {
@@ -151,14 +145,9 @@
   background:rgba(255, 255, 255, 0.75);
   height:100%;
   width:100%;
-  z-index:5000;
+  z-index:1;
 }
 
-.image-select__add-new-img-btn {
-  color: #fff;
-  border:1px solid #ccc;
-  background-color:$color--green;
-}
 
 
 

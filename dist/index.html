@@ -77,7 +77,7 @@
         	<div class="default__content" ng-if="status.mode=='blank'">
             	<span ng-click="createNew();">Create a new document</span>
                 <br>or<br>
-                <span ng-click="getFiles(); showFileSelect(); fileActionSwitch('load')">Load a file</span> to begin
+                <span ng-click="getFiles(); showFileSelect(); fileActionSwitch('load')">Load a file</span>
             </div>
             
             <div class="email-banner" ng-if="status.mode=='preview'">
@@ -95,7 +95,10 @@
             </div>       
         	
             
-            <div id="sections-wrap" ui-sortable="sortableOptions" ng-model="file.sections" ng-class="{'preview' : status.mode=='preview'}">    
+            <div id="sections-wrap" ui-sortable="sortableOptions" ng-model="file.sections" ng-class="{'preview' : status.mode=='preview'}">    <div class="add-section" ng-if="status.mode === 'working'">
+                    <div class="add-section__btn" ng-click="addSection(0, 'story')"><span class="fa fa-plus"></span> Add new article</div>
+                </div>
+                    
                 <div id="{{'section' + $index}}" class="section" ng-repeat="section in file.sections" ng-switch on="section.type">
                     <div ng-switch-when="story" ng-switch on="status.mode">
                    		<working-story ng-switch-when="working"></working-story>
@@ -242,14 +245,21 @@
     	<div class="overlay file-select-overlay" ng-click="fileSelectShow = !fileSelectShow"></div>
     </div>
     
-    <div class="send-dialog-wrap animate-show-fade" ng-show="sendDialog">
+    <div class="send-dialog__wrap animate-show-fade" ng-show="sendDialog">
     	<div class="send-dialog">
-        	<div class="title">Send E-Mail:</div>
-        	<label for="emailAddr">To:</label> <input id="emailAddr" type="text" ng-model="file.recipient" ng-value="file.recipient"><br>
-        	<label for="subjectLine">Subject:</label> <input id="subjectLine" type="text" ng-model="file.subjectline" ng-value="file.subjectline">
+        	<div class="send-dialog__title">Send E-Mail:</div>
+            <div class="send-dialog__input">
+                <label for="emailAddr">To:</label> 
+                <input id="emailAddr" type="text" ng-model="file.recipient" ng-value="file.recipient">
+            </div>
+        	<div class="send-dialog__input">
+        	   <label for="subjectLine">Subject:</label> 
+               <input id="subjectLine" type="text" ng-model="file.subjectline" ng-value="file.subjectline">
+           </div>
+
             <button ng-click="sendEmail();">Send E-Mail</button>
             
-            <div class="error" ng-if="sendEmailError">{{sendEmailError}}</div>
+            <div class="send-dialog__error" ng-if="sendEmailError">{{sendEmailError}}</div>
     	</div>
         <div class="overlay file-select-overlay" ng-click="sendDialog = !sendDialog"></div>
     </div>

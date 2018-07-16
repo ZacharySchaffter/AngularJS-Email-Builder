@@ -1,0 +1,66 @@
+.send-dialog__wrap {
+  position:fixed;
+  z-index:1000;
+  top:0;
+  left:0;
+  height:100%;
+  width:100%;
+  padding:1em 2em;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  .send-dialog {
+    box-shadow:1px 3px 30px rgba(0, 0, 0, 0.2);
+    max-width:350px;
+    width:100%;
+    padding:1em;
+    margin:0 auto;
+    border:1px solid #999;
+    border-radius:2px;
+    background-color:#fff;
+    z-index:2;
+
+    .send-dialog__input {
+      margin-bottom:1em;
+
+      label {
+        display:block;
+        text-align: left;
+        font-size:13px;
+        font-weight:700;
+        color:#777;
+        text-transform:uppercase;
+        padding:.5em 8px;
+      }  
+
+      
+      input {
+        display:block;
+        outline:0;
+        border:1px solid #ccc;
+        padding:.75em .5em;
+        width:100%;
+        border-radius:2px;
+      }
+    }
+
+    .send-dialog__title {
+      font-size:18px; 
+      font-weight: 700;
+      margin-bottom:1em;
+    }
+
+    button {
+      @extend .button--green;
+      margin:5px 0; 
+      width:100%; 
+      text-align:center;
+    }
+
+    .send-dialog__error {
+      font-style:italic; 
+      color:$color--red;
+    }
+  }    
+}
